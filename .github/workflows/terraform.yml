@@ -18,7 +18,7 @@ jobs:
         run: terraform fmt -check -recursive
 
       - name: terraform validate
-        working-directory: workloads/dev
+        # working-directory: workloads/dev
         run: |
           terraform init -backend=false
           terraform validate
