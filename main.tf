@@ -19,3 +19,7 @@ resource "aws_instance" "practise_instance" {
     Name = "practise_instance"
   }
 }
+
+
+
+# ics_v1_ByrhqevEMiEV9AAftK3Soa_s8XgLZ4g1tceOO4NQ7y34jZyc9Hb965qAUIvfzkmhshDEuDSp
