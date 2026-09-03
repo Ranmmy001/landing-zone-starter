@@ -1,0 +1,40 @@
+name: terraform checks
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  validate:
+    name: Format & Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4 
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - name: terraform fmt (check only)
+        run: terraform fmt -check -recursive
+
+
+      - name: terraform validate (dev workload)
+        working-directory: workloads/dev
+        run: |
+          terraform init -backend=false
+          terraform validate
+
+  tfsec:
+    name: tfsec Security Scan
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Run tfsec
+
+        uses: aquasecurity/tfsec-action@v1.0.3
+        
+
+
